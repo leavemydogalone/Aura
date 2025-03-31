@@ -34,6 +34,8 @@ public:
 	/* Combat Interface */
 	virtual int32 GetPlayerLevel() override;
 	virtual void Die() override;
+	virtual void SetCombatTarget_Implementation(AActor* IncombatTarget) override;
+	virtual AActor* GetCombatTarget_Implementation() const override;
 	/* End Combat Interface */
 
 	//we're okay bringing this over becuase overlaywidgetcontrollers isn't really a big class
@@ -53,6 +55,9 @@ public:
 
 	UPROPERTY(EditAnywhere, Category = "Combat")
 	float LifeSpan = 5.f;
+
+	UPROPERTY(BlueprintReadWrite, Category = "Combat")
+	TObjectPtr<AActor> CombatTarget;
 
 protected:
 	virtual void BeginPlay() override;

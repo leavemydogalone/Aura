@@ -24,4 +24,11 @@ class AURA_API IEnemyInterface
 public:
 	virtual void HighlightActor() = 0;
 	virtual void UnHighlightActor() = 0;
+
+	// For interfaces, the best way to achieve fuctionality that is implementable in blueprint and also be callable from blueprint is to use BlueprintNative event
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	void SetCombatTarget(AActor* IncombatTarget);
+
+	UFUNCTION(BlueprintNativeEvent, BlueprintCallable, Category = "Combat")
+	AActor* GetCombatTarget() const;
 };
