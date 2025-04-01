@@ -104,8 +104,6 @@ void UExecCalc_Damage::Execute_Implementation(const FGameplayEffectCustomExecuti
 	{
 		//we don't want to construct this each time with AuraDamageStatics(), as we are doing now. instead using the DamageStatics() static struct, but the Tags are not initialized yet. Will be addressed in  307. Determining Debuff, but also can make updates in the below link
 
-		//https://www.udemy.com/course/unreal-engine-5-gas-top-down-rpg/learn/lecture/39867850#questions/20923366
-
 		const FGameplayTag DamageTypeTag = Pair.Key;
 		const FGameplayTag ResistanceTag = Pair.Value;
 		checkf(AuraDamageStatics().TagsToCaptureDefs.Contains(ResistanceTag), TEXT("TagsToCapturesDef doesn't contain Tag: [%s] in ExecCalc_Damage"), *ResistanceTag.ToString());
