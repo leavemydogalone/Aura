@@ -152,6 +152,20 @@ void UAuraAbilitySystemLibrary::GetLivePlayersWithinRadius(const UObject* WorldC
 	}
 }
 
+// This should really be done in the execcalc of the damage ability, so we don't need to use this in every ability BP
+bool UAuraAbilitySystemLibrary::IsNotFriend(AActor* FirstActor, AActor* SecondActor)
+{
+	const bool FirstIsPlayer = FirstActor->ActorHasTag(FName("Player"));
+	const bool SecondIsPlayer = SecondActor->ActorHasTag(FName("Player"));
+	const bool FirstIsEnemy = FirstActor->ActorHasTag(FName("Enemy"));
+	const bool SecondIsEnemy = SecondActor->ActorHasTag(FName("Enemy"));
+
+	if (FirstIsPlayer && SecondIsPlayer) return false;
+	if (FirstIsEnemy && SecondIsEnemy) return false;
+
+	return true;
+}
+
 void UAuraAbilitySystemLibrary::SetIsBlockedHit(FGameplayEffectContextHandle& EffectContextHandle, bool bInIsBlocked)
 {
 	if (FAuraGameplayEffectContext* AuraEffectContext = static_cast<FAuraGameplayEffectContext*>(EffectContextHandle.Get()))
